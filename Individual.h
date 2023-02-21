@@ -4,7 +4,15 @@
 
 
 class Individual {
+private:
+    std::string category;
+    std::string deliverable;
+    std::vector<std::vector<int>> grades;
+    int DetermineCategory(std::string category);
 
+public:
+    Individual(std::string category, std::string deliverable, std::vector<std::vector<int>> grades);
+    int GetGrade(std::string category, std::string deliverable, std::vector<std::vector<int>> grades);
 };
 
 
