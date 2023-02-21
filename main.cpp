@@ -67,12 +67,22 @@ int main(int argc, char* argv[]){
     std::string category = argv[3];
 
     //Command = which method of the specified class the user is looking to use
-    std::string command = argv[4];
+    // std::string command = argv[4];
 
     //Make each variable completely uppercase
     std::transform(type.begin(), type.end(), type.begin(), ::toupper);
     std::transform(category.begin(), category.end(), category.begin(), ::toupper);
-    std::transform(command.begin(), command.end(), command.begin(), ::toupper);
+    
+    //Assign 4th CLA value depending on class type
+    if(type == "CATEGORY") {
+        std::string command = argv[4];
+        std::transform(command.begin(), command.end(), command.begin(), ::toupper);
+    } else if(type == "INDIVIDUAL") {
+        std::string deliverable = argv[4];
+        std::transform(deliverable.begin(), deliverable.end(), deliverable.begin(), ::toupper);
+    }
+    
+    // std::transform(command.begin(), command.end(), command.begin(), ::toupper);
 
     //Use case for category class
     if(type == "CATEGORY"){
@@ -82,5 +92,13 @@ int main(int argc, char* argv[]){
         }
         std::cout<< use_category.Total(category, grades) << std::endl;
     }
+    
+    //Use case for individual class
+    if(type == "INDIVIDUAL") {
+        Individual use_individual(category, deliverable, grades);
+        std::cout << "Deliverable Name: " << deliverable << std::endl;
+        std::cout << deliverable << " Grade: " << use_individual.GetGrade(category, deliverable, grades) << std::endl;
+    }
+    
     return 0;
 }
